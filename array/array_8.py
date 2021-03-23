@@ -2,18 +2,20 @@
 
 
 def countTriplet(arr, n):
-    freq = [0 for i in range(100)]
-    for i in range(n):
-        freq[arr[i]] += 1
-    count = 0
+    arr.sort()
+    set_a = set(arr)
+    max_a = arr[-1]
+    c = 0
+    for i in range(n-2):
+        for j in range(i+1, n-1):
+            s = arr[i]+arr[j]
+            if(s > max_a):
+                break
+            elif(s in set_a):
+                c += 1
+    return c
 
-    for i in range(n):
-        for j in range(i+1, n, 1):
-            if(freq[arr[i]+arr[j]]):
-                count += 1
-    return count
 
-
-arr = [1, 1, 1, 2, 2]
+arr = [1, 5, 3, 2]
 n = len(arr)
 print(countTriplet(arr, n))
